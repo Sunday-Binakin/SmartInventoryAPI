@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmartInventoryAPI.Data;
 
 namespace SmartInventoryAPI.Controllers;
 
-[Authorize]
+[Authorize(Roles = UserRoles.Admin)]
+//[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
