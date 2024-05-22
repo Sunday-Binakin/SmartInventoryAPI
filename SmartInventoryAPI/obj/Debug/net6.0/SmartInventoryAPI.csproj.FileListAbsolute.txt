@@ -63,3 +63,4 @@ D:\C#\Backend\Udemy\SmartInventory\SmartInventoryAPI\obj\Debug\net6.0\SmartInven
 D:\C#\Backend\Udemy\SmartInventory\SmartInventoryAPI\obj\Debug\net6.0\ref\SmartInventoryAPI.dll
 D:\C#\Backend\Udemy\SmartInventory\SmartInventoryAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\C#\Backend\Udemy\SmartInventory\SmartInventoryAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\C#\Backend\Udemy\SmartInventory\SmartInventoryAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
