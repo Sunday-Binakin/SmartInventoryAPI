@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SmartInventoryAPI.Models;
+using SmartInventoryAPI.Models.Customer;
 using SmartInventoryAPI.Models.Product_Management;
 
 namespace SmartInventoryAPI.Data;
@@ -13,6 +15,10 @@ public class SmartInventoryDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<CustomerAddress> CustomerAddresses { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -48,5 +54,39 @@ public class SmartInventoryDbContext : IdentityDbContext<IdentityUser>
             entity.Property(s => s.Name).IsRequired().HasMaxLength(100);
             entity.Property(s => s.CreatedAt).HasDefaultValueSql("GETDATE()");
         });
+        // Configurations for Order
+        builder.Entity<Order>()
+            .HasKey(o => o.OrderId);
+
+        builder.Entity<Order>()
+            .HasOne(o => o.Customer)
+            .WithMany(c => c.Orders)
+            .HasForeignKey(o => o.CustomerId);
+
+        builder.Entity<Order>()
+            .HasMany(o => o.OrderItems)
+            .WithOne(oi => oi.Order)
+            .HasForeignKey(oi => oi.OrderId);
+
+        // Configurations for OrderItem
+        builder.Entity<OrderItem>()
+            .HasKey(oi => oi.OrderItemId);
+
+        builder.Entity<OrderItem>()
+            .HasOne(oi => oi.Product)
+            .WithMany(p => p.OrderItems)
+            .HasForeignKey(oi => oi.ProductId);
+        // Configurations for Customer
+        builder.Entity<Customer>()
+            .HasKey(c => c.CustomerId);
+
+        builder.Entity<Customer>()
+            .HasMany(c => c.Addresses)
+            .WithOne(a => a.Customer)
+            .HasForeignKey(a => a.CustomerId);
+
+        // Configurations for CustomerAddress
+        builder.Entity<CustomerAddress>()
+            .HasKey(ca => ca.CustomerAddressId);
     }
 }

@@ -1,5 +1,6 @@
 using SmartInventoryAPI.Models.Product_Management;
 using SmartInventoryAPI.Repository;
+using SmartInventoryAPI.Repository.Interface;
 using SmartInventoryAPI.Services.Interface;
 
 namespace SmartInventoryAPI.Services.Implementation;
@@ -13,22 +14,22 @@ public class SupplierService : ISupplierService
         _supplierRepository = supplierRepository;
     }
 
-    public async Task<IEnumerable<Supplier>> GetAllSuppliersAsync()
+    public async Task<IEnumerable<Supplier?>> GetAllSuppliersAsync()
     {
         return await _supplierRepository.GetAllAsync();
     }
 
-    public async Task<Supplier> GetSupplierByIdAsync(int id)
+    public async Task<Supplier?> GetSupplierByIdAsync(int id)
     {
         return await _supplierRepository.GetByIdAsync(id);
     }
 
-    public async Task AddSupplierAsync(Supplier supplier)
+    public async Task AddSupplierAsync(Supplier? supplier)
     {
         await _supplierRepository.AddAsync(supplier);
     }
 
-    public async Task UpdateSupplierAsync(Supplier supplier)
+    public async Task UpdateSupplierAsync(Supplier? supplier)
     {
         await _supplierRepository.UpdateAsync(supplier);
     }

@@ -36,7 +36,7 @@ public class ProductController : ControllerBase
 
     [Authorize(Roles = "Admin")]
     [HttpPost]
-    public async Task<IActionResult> AddProduct([FromBody] Product product)
+    public async Task<IActionResult> AddProduct([FromBody] Product? product)
     {
         await _productService.AddProductAsync(product);
         return CreatedAtAction(nameof(GetProductById), new { id = product.ProductId }, product);
@@ -44,7 +44,7 @@ public class ProductController : ControllerBase
 
     [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product product)
+    public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product? product)
     {
         if (id != product.ProductId)
         {

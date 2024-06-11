@@ -35,14 +35,14 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddCategory([FromBody] Category category)
+    public async Task<IActionResult> AddCategory([FromBody] Category? category)
     {
         await _categoryService.AddCategoryAsync(category);
         return CreatedAtAction(nameof(GetCategoryById), new { id = category.CategoryId }, category);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
+    public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category? category)
     {
         if (id != category.CategoryId)
         {

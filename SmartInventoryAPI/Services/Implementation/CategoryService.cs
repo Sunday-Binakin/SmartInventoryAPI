@@ -1,5 +1,6 @@
 using SmartInventoryAPI.Models.Product_Management;
 using SmartInventoryAPI.Repository;
+using SmartInventoryAPI.Repository.Interface;
 using SmartInventoryAPI.Services.Interface;
 
 namespace SmartInventoryAPI.Services.Implementation;
@@ -13,22 +14,22 @@ public class CategoryService : ICategoryService
         _categoryRepository = categoryRepository;
     }
 
-    public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
+    public async Task<IEnumerable<Category?>> GetAllCategoriesAsync()
     {
         return await _categoryRepository.GetAllAsync();
     }
 
-    public async Task<Category> GetCategoryByIdAsync(int id)
+    public async Task<Category?> GetCategoryByIdAsync(int id)
     {
         return await _categoryRepository.GetByIdAsync(id);
     }
 
-    public async Task AddCategoryAsync(Category category)
+    public async Task AddCategoryAsync(Category? category)
     {
         await _categoryRepository.AddAsync(category);
     }
 
-    public async Task UpdateCategoryAsync(Category category)
+    public async Task UpdateCategoryAsync(Category? category)
     {
         await _categoryRepository.UpdateAsync(category);
     }

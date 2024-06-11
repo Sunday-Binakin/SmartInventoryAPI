@@ -14,4 +14,6 @@ public class Product
 
     public Category Category { get; set; }
     public Supplier Supplier { get; set; }
+    
+    public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); // Collection navigation property
 }

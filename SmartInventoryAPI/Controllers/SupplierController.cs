@@ -36,7 +36,7 @@ public class SupplierController : ControllerBase
 
     [Authorize(Roles = "Admin")]
     [HttpPost]
-    public async Task<IActionResult> AddSupplier([FromBody] Supplier supplier)
+    public async Task<IActionResult> AddSupplier([FromBody] Supplier? supplier)
     {
         await _supplierService.AddSupplierAsync(supplier);
         return CreatedAtAction(nameof(GetSupplierById), new { id = supplier.SupplierId }, supplier);
@@ -45,7 +45,7 @@ public class SupplierController : ControllerBase
     
     [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateSupplier(int id, [FromBody] Supplier supplier)
+    public async Task<IActionResult> UpdateSupplier(int id, [FromBody] Supplier? supplier)
     {
         if (id != supplier.SupplierId)
         {
